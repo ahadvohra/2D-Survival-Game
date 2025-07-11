@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://main_scene"]
+[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id=1]
+[ext_resource type="PackedScene" path="res://Scenes/Collectible.tscn" id=2]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy.tscn" id=3]
+[ext_resource type="PackedScene" path="res://Scenes/InventoryUI.tscn" id=4]
+[ext_resource type="PackedScene" path="res://Scenes/Cutscene.tscn" id=5]
+[ext_resource type="PackedScene" path="res://Scenes/HealthBar.tscn" id=6]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id=7]
+
+[node name="Main" type="Node2D"]
+script = ExtResource(7)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet", "res://Assets/tileset.tres")
+format = 2
+layer_0/tile_data = {
+    "0,0": { "source_id": 0, "atlas_coords": Vector2i(0, 0) }
+    # Note: Fill a 40x22 grid in Godot editor
+}
+
+[node name="Player" parent="." instance=ExtResource(1)]
+position = Vector2(640, 360)
+
+[node name="CollectibleSpawner" type="Node2D" parent="."]
+script = SubResource("Script", "res://Scripts/CollectibleSpawner.gd")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = SubResource("Script", "res://Scripts/EnemySpawner.gd")
+
+[node name="InventoryUI" parent="." instance=ExtResource(4)]
+position = Vector2(50, 50)
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+position = Vector2(1000, 500)
+script = SubResource("Script", "res://Scripts/CutsceneTrigger.gd")
+
+[node name="HealthBar" parent="." instance=ExtResource(6)]
+position = Vector2(50, 100)
