@@ -1,0 +1,13 @@
+[gd_project]
+version=4
+
+[configuration]
+run.main_scene="res://Scenes/Main.tscn"
+window.size.width=1280
+window.size.height=720
+
+[input]
+attack={ "events": [ { "physical_keycode": KEY_SPACE, "pressed": true } ] }
+
+[autoload]
+Global="*res://Scripts/Global.gd"
